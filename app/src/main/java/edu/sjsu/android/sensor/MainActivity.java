@@ -25,16 +25,31 @@ public class MainActivity extends AppCompatActivity {
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         deviceSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
-
+        //print out all infomation of the sensors with toString.
         //textview.setText(deviceSensors.toString());
 
-        printSensors();
+        //use this function to print out all sensor's name line by line
+       // printSensors();
+        
+        //print out a sensor.
+        specificSensor();
+        
     }
 
-    private void printSensors() {
-        for (Sensor sensor : deviceSensors)
+    private void specificSensor() {
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null)
         {
-            textview.setText(textview.getText() + "\n" + sensor.getName());
+            textview.setText("This device has Magntometer");
+        } else
+        {
+            textview.setText("This device has no Magnetometer");
         }
     }
+
+//    private void printSensors() {
+//        for (Sensor sensor : deviceSensors)
+//        {
+//            textview.setText(textview.getText() + "\n" + sensor.getName());
+//        }
+//    }
 }
